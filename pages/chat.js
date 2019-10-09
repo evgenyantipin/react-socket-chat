@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { withRouter } from 'next/router'
 import socketIOClient from "socket.io-client";
 import { ChatWidgetWrap, ChatWidgetLeft, ChatWidgetRight, ChatWidgetMessageLeft, ChatWidgetMessageRight} from '../components/styled';
+import { useDebounce } from 'react-use';
 
 import Layout from '../components/layout';
 import Header from '../components/header';
@@ -11,14 +12,20 @@ import Footer from '../components/footer';
 
 const socket = socketIOClient('localhost:3001');
 
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
+
 const Chat = (props) => {
   const { router } = props;
   const [state, setState] = useState({
-    user: router.query.user || 'admin',
-    target: router.query.target || '장만월 사장님',
-    messages:[],
-    stagingMessage:''
+    // user: router.query.user || 'admin',
+    // target: router.query.target || '장만월 사장님',
+    user: router.query.user,
+    target: router.query.target,
+    messages:[]
   });
+  const [debounceMessage, setDebounceMessage] = useState('');
+  const myRef = useRef(null)
+  const executeScroll = () => scrollToRef(myRef)
 
   const receiveMessage = () => {
     console.log('현재 유저', state.user)
@@ -29,8 +36,10 @@ const Chat = (props) => {
       console.log('받은 메세지', messages)
       setState({ 
         ...state,
-        messages 
+        messages
       })
+      setDebounceMessage('');
+      executeScroll();
     }); 
   };
 
@@ -43,25 +52,24 @@ const Chat = (props) => {
     }
   }, [state.user, state.target]);
 
+  useDebounce(
+    () => {
+      setDebounceMessage(debounceMessage)
+    },
+    1000,
+    [debounceMessage]
+  );
+
   // sending sockets
   const readMessages = () => {
     socket.emit('read message', state.user, state.target);
-    receiveMessage();  
   };
 
   const sendMessages = () => {
-    socket.emit('send message', state.user, state.stagingMessage)
+    socket.emit('send message', state.user, state.target, debounceMessage)
     receiveMessage();  
   };
   
-  // adding the function
-  const inputMessage = (e) => {
-    setState({
-      ...state,
-      stagingMessage:e.target.value
-    })
-  };
-
   const renderChatMessages = useCallback(() => {
     const { user, messages } = state;
 
@@ -97,7 +105,8 @@ const Chat = (props) => {
       </Head>
       <Header user={state.user} target={state.target} />
       {state.messages.length && renderChatMessages()}
-      <Footer stagingMessage={state.stagingMessage} sendMessages={sendMessages} inputMessage={inputMessage} />
+      <Footer debounceMessage={debounceMessage} setDebounceMessage={setDebounceMessage} sendMessages={sendMessages} />
+      <div ref={myRef} style={{visibility:'hidden'}}></div>
     </Layout>
   )
 };

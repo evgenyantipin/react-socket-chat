@@ -10,19 +10,19 @@
     "server": "node server.js"
   },
   "bugs": {
-		"url": "https://github.com/juunone/react-socket-chat/issues"
-	},
+    "url": "https://github.com/juunone/react-socket-chat/issues"
+  },
   "keywords": [
     "nextJS",
     "reactJS",
     "socket-io"
   ],
   "engines": {
-		"node": ">=10.16.3"
-	},
-	"os": [
-		"!win32"
-	],
+    "node": ">=10.16.0"
+  },
+  "os": [
+    "!win32"
+  ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
@@ -32,6 +32,7 @@
     "next": "9.1.1",
     "react": "16.10.2",
     "react-dom": "16.10.2",
+    "react-use": "^12.3.0",
     "socket.io": "^2.3.0",
     "styled-components": "^4.4.0"
   },

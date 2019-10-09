@@ -136,6 +136,9 @@ export const FooterSendButton = styled(SelectButton)`
 export const ChatWidgetWrap = styled.ul`
   background:#f9f9fb;
   padding:1em;
+  // overflow-y: scroll;
+  // max-height: 500px;
+  // height:500px;
 `
 
 export const ChatWidgetLeft = styled.li`

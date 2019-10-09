@@ -11,6 +11,7 @@
 
 > this is chatting application
 > development with NextJS socket.io 🌐
+> yarn install atleast "node": ">=10.16.0" it implements in 'engine' in package.json.
 
 ## Install
 

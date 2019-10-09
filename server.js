@@ -107,10 +107,36 @@ io.on('connection', socket => {
     console.log('user disconnected!')
   })
 
-  socket.on('send message', (name,text) => {
-    const msg = `${name}: ${text}`;
-    console.log('message Changed to: ', msg)
-    io.sockets.emit('receive message', msg)
+  socket.on('send message', (user, target, msg) => {
+    console.log('send message to: ', user, target, msg)
+    const copyData = [...data];
+
+    copyData.forEach(v => {
+      if(v.id === user){
+        v.contents.forEach(key => {
+          if(key.name === target){
+            key.messages.push({
+              user: user,
+              message: msg,
+              isRead: true
+            })
+          }
+        });
+      } else if (v.id === target) {
+        v.contents.forEach(key => {
+          if(key.name === user){
+            key.messages.push({
+              user: user,
+              message: msg,
+              isRead: false
+            })
+          }
+        });
+      }
+    })
+    console.log('send data copydata', copyData)
+    data = copyData;
+    // io.sockets.emit('receive message', copyData);
   })
 
   socket.on('receive data', (user) => {
@@ -140,7 +166,7 @@ io.on('connection', socket => {
     });
     copyData[userIdx].contents = mappingData;
     data = copyData;
-    io.sockets.emit('read message', copyData);
+    // io.sockets.emit('read message', copyData);
   });
 })
 

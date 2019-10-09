@@ -13,7 +13,8 @@ const socket = socketIOClient('localhost:3001');
 const List = (props) => {
   const { router } = props;
   const [state, setState] = useState({
-    user: router.query.user || 'admin'
+    // user: router.query.user || 'admin'
+    user: router.query.user
   })
 
   const receiveData = () => {
