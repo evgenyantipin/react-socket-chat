@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to react-socket-chat 👋</h1>
+<h1 align="center">react-socket-chat 🚀</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/juunone/react-socket-chat" target="_blank">
@@ -9,9 +9,8 @@
   </a>
 </p>
 
-> NextJS socket.io chat
-
-### 🏠 [Homepage](https://github.com/juunone/react-socket-chat)
+> this is chatting application
+> development with NextJS socket.io 🌐
 
 ## Install
 
