@@ -4,13 +4,30 @@ import PropTypes from 'prop-types';
 
 const theme = {
   fontFamily: "'Helvetica, sans-serif'",
-  margin: 0
+  margin: 0,
+  padding: 0,
+  color:'black'
 };
 
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: ${props => props.theme.fontFamily};
     margin: ${props => props.theme.margin};
+    padding: ${props => props.theme.padding};
+    color: ${props => props.theme.color};
+
+    p{
+      margin:0;
+    }
+
+    ul{
+      margin:0;
+      padding:0;
+
+      li{
+        list-style:none;
+      }
+    }
   }
 `
 

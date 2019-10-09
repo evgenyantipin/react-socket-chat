@@ -19,8 +19,10 @@ const App = () => {
   return (
     <Layout>
       <Head>
-        <title>React Socket Chat</title>
+        <title>React Socket.io Chatting</title>
         <link rel='icon' href='/favicon.ico' />
+        <meta name="description" content="React Socket.io Chatting application"/>
+        <meta name="keywords" content="react,socket.io,chatting,javascript" />
       </Head>
       <SelectUserWidget>
         <Title>사용자를 선택해주세요. &#x1F64F;</Title>
