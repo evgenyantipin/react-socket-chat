@@ -3,13 +3,26 @@ import Head from 'next/head';
 import Link from 'next/link'
 import Layout from '../components/layout';
 import { Title, SelectUserWidget, SelectList, SelectButton } from '../components/styled';
+import socketIOClient from "socket.io-client";
+
+const socket = socketIOClient('localhost:3001');
 
 const App = () => { 
   const [state, setState] = useState({
     user:''
   });
 
+  const registId = (user) => {
+    console.log('등록할유저', user)
+    socket.emit('regist id', user);  
+
+    socket.on('regist id', (data) => {
+      console.log('regist id', data)
+    }); 
+  }
+
   const selectUser = useCallback((e) => {
+    registId(e.target.value);
     setState({
       ...state,
       user:e.target.value

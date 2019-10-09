@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { withRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 import socketIOClient from "socket.io-client";
 import { ChatWidgetWrap, ChatWidgetLeft, ChatWidgetRight, ChatWidgetMessageLeft, ChatWidgetMessageRight} from '../components/styled';
 import { useDebounce } from 'react-use';
@@ -14,13 +14,14 @@ const socket = socketIOClient('localhost:3001');
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
-const Chat = (props) => {
-  const { router } = props;
+const Chat = () => {
+  const router = useRouter()
+  const { user,target } = router.query
   const [state, setState] = useState({
     // user: router.query.user || 'admin',
     // target: router.query.target || '장만월 사장님',
-    user: router.query.user,
-    target: router.query.target,
+    user: user,
+    target: target,
     messages:[]
   });
   const [debounceMessage, setDebounceMessage] = useState('');
@@ -41,6 +42,12 @@ const Chat = (props) => {
       setDebounceMessage('');
       executeScroll();
     }); 
+
+    if(!state.user){
+      Router.push({
+        pathname: '/'
+      })
+    }
   };
 
   useEffect(() => {
@@ -111,7 +118,7 @@ const Chat = (props) => {
   )
 };
 
-export default withRouter(Chat);
+export default Chat;
 
 Chat.propTypes = {
   router: PropTypes.object,

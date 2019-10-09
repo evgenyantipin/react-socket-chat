@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { withRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 import socketIOClient from "socket.io-client";
 
 import Layout from '../components/layout';
@@ -10,11 +10,12 @@ import ChatRoomWidget from '../components/chatRoomWidget';
 
 const socket = socketIOClient('localhost:3001');
 
-const List = (props) => {
-  const { router } = props;
+const List = () => {
+  const router = useRouter();
+  const { user } = router.query;
   const [state, setState] = useState({
     // user: router.query.user || 'admin'
-    user: router.query.user
+    user: user
   })
 
   const receiveData = () => {
@@ -28,6 +29,12 @@ const List = (props) => {
         data 
       })
     }); 
+
+    if(!state.user){
+      Router.push({
+        pathname: '/'
+      })
+    }
   }
 
   useEffect(() => {
@@ -52,7 +59,7 @@ const List = (props) => {
   )
 };
 
-export default withRouter(List);
+export default List;
 
 List.propTypes = {
   router: PropTypes.object,

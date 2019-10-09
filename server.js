@@ -6,6 +6,8 @@ const app = express()
 const server = http.createServer(app)
 const io = socketIO(server)
 
+let idObj = {};
+
 let data = [
   {
     id: 'admin',
@@ -107,6 +109,13 @@ io.on('connection', socket => {
     console.log('user disconnected!')
   })
 
+  socket.on('regist id', (user) => {
+    console.log('소켓아이디', socket.id);
+    console.log('regist id to: ', user)
+    idObj[socket.id] = user;
+    io.sockets.emit('regist id', idObj);
+  });
+
   socket.on('send message', (user, target, msg) => {
     console.log('send message to: ', user, target, msg)
     const copyData = [...data];
@@ -148,7 +157,7 @@ io.on('connection', socket => {
   socket.on('receive message', (user, target) => {
     console.log('receive message to: ', user, target)
     const targetData = data.filter(v => v.id === user)[0];
-    const targetMessages = targetData.contents.filter(value => value.name === target)[0].messages;
+    const targetMessages = targetData ? targetData.contents.filter(value => value.name === target)[0].messages : [];
     io.sockets.emit('receive message', targetMessages);
   });
 
@@ -156,15 +165,18 @@ io.on('connection', socket => {
     console.log('read message to: ', user, target)
     const copyData = [...data];
     const userIdx = copyData.findIndex(v => v.id === user);
-    const mappingData = copyData[userIdx].contents.map(key => {
-      if(key.name === target){
-        key.messages.forEach(value => {
-          if(value.user === target) value.isRead = true;
-        }) 
-      }
-      return key
-    });
-    copyData[userIdx].contents = mappingData;
+    if(userIdx !== -1){
+      const mappingData = copyData[userIdx].contents.map(key => {
+        if(key.name === target){
+          key.messages.forEach(value => {
+            if(value.user === target) value.isRead = true;
+          }) 
+        }
+        return key
+      });
+      copyData[userIdx].contents = mappingData;
+    }
+
     data = copyData;
     // io.sockets.emit('read message', copyData);
   });
