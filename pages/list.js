@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import Router, { useRouter } from 'next/router'
+import Router, { withRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 import socketIOClient from "socket.io-client";
 
 import Layout from '../components/layout';
-import Header from '../components/header';
-import ChatRoomWidget from '../components/chatRoomWidget';
+
+const DynamicHeader = dynamic(() => import('../components/header'))
+const DynamicChatRoomWidget = dynamic(() => import('../components/chatRoomWidget'))
 
 const socket = socketIOClient('localhost:3001');
 
-const List = () => {
-  const router = useRouter();
-  const { user } = router.query;
+const List = (props) => {
+  const { router } = props;
   const [state, setState] = useState({
     // user: router.query.user || 'admin'
-    user: user
+    user: router.query.user
   })
 
   const receiveData = () => {
@@ -23,6 +24,7 @@ const List = () => {
     socket.emit('receive data', state.user);  
 
     socket.on('receive data', (data) => {
+      console.log('현재 유저22', state.user)
       console.log('receive data', data)
       setState({ 
         ...state,
@@ -38,12 +40,12 @@ const List = () => {
   }
 
   useEffect(() => {
-    receiveData()
+    receiveData();
 
     return () => {
       socket.off('receive data');
     }
-  }, [state.user]);
+  }, []);
 
   return (
     <Layout>
@@ -53,13 +55,13 @@ const List = () => {
         <meta name="description" content="React Socket.io Chatting application"/>
         <meta name="keywords" content="react,socket.io,chatting,javascript" />
       </Head>
-      <Header />
-      <main>{state.data && <ChatRoomWidget user={state.user} data={state.data} />}</main>
+      <DynamicHeader />
+      <main>{state.data && <DynamicChatRoomWidget user={state.user} data={state.data} />}</main>
     </Layout>
   )
 };
 
-export default List;
+export default withRouter(List);
 
 List.propTypes = {
   router: PropTypes.object,

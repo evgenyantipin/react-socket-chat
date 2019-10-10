@@ -12,17 +12,7 @@ const App = () => {
     user:''
   });
 
-  const registId = (user) => {
-    console.log('등록할유저', user)
-    socket.emit('regist id', user);  
-
-    socket.on('regist id', (data) => {
-      console.log('regist id', data)
-    }); 
-  }
-
   const selectUser = useCallback((e) => {
-    registId(e.target.value);
     setState({
       ...state,
       user:e.target.value

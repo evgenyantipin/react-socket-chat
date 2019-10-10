@@ -6,8 +6,6 @@ const app = express()
 const server = http.createServer(app)
 const io = socketIO(server)
 
-let idObj = {};
-
 let data = [
   {
     id: 'admin',
@@ -103,20 +101,9 @@ let data = [
 ];
 
 io.on('connection', socket => {
-  console.log('connected!')
+  console.log('connected!');
 
-  socket.on('disconnect', () => {
-    console.log('user disconnected!')
-  })
-
-  socket.on('regist id', (user) => {
-    console.log('소켓아이디', socket.id);
-    console.log('regist id to: ', user)
-    idObj[socket.id] = user;
-    io.sockets.emit('regist id', idObj);
-  });
-
-  socket.on('send message', (user, target, msg) => {
+  socket.on('send message', (user, target, msg, isPicture) => {
     console.log('send message to: ', user, target, msg)
     const copyData = [...data];
 
@@ -126,7 +113,8 @@ io.on('connection', socket => {
           if(key.name === target){
             key.messages.push({
               user: user,
-              message: msg,
+              message: isPicture === true ? '' : msg,
+              picture: isPicture === true ? msg : '',
               isRead: true
             })
           }
@@ -136,7 +124,8 @@ io.on('connection', socket => {
           if(key.name === user){
             key.messages.push({
               user: user,
-              message: msg,
+              message: isPicture === true ? '' : msg,
+              picture: isPicture === true ? msg : '',
               isRead: false
             })
           }
@@ -144,12 +133,15 @@ io.on('connection', socket => {
       }
     })
     console.log('send data copydata', copyData)
-    data = copyData;
-    // io.sockets.emit('receive message', copyData);
+
+    const targetData = copyData.filter(v => v.id === user)[0];
+    const targetMessages = targetData ? targetData.contents.filter(value => value.name === target)[0].messages : [];
+    io.sockets.emit('receive message', targetMessages);
   })
 
   socket.on('receive data', (user) => {
     console.log('receive data to: ', user)
+    console.log('data', data)
     const newData = data.filter(v => v.id === user)[0];
     io.sockets.emit('receive data', newData);
   });
@@ -180,6 +172,10 @@ io.on('connection', socket => {
     data = copyData;
     // io.sockets.emit('read message', copyData);
   });
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected!')
+  })
 })
 
 server.listen(port, () => console.log(`Listening on port ${port}`))

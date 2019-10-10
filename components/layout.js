@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
   html{
     scroll-behavior: smooth;
   }
+
   body {
     font-family: ${props => props.theme.fontFamily};
     margin: ${props => props.theme.margin};
@@ -30,6 +31,15 @@ const GlobalStyle = createGlobalStyle`
       li{
         list-style:none;
       }
+    }
+  }
+
+  @keyframes scale-up {
+    0% {
+      transform: scale(0.5);
+    }
+    100% {
+      transform: scale(1);
     }
   }
 `

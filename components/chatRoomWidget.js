@@ -32,25 +32,37 @@ const ChatRoomWidget = (props) => {
         return(
           <Link href={`/chat?user=${user}&target=${value.name}`} as='/chat' key={index}>
             <ChatRoomPanel>
-            <ChatRoomDividerLeft>
-              <ChatRoomPanelDesc>
-                <ChatRoomPanelImg src={value.picture} />
-              </ChatRoomPanelDesc>
-              <ChatRoomPanelDesc style={{marginTop:'2vh', marginLeft:'1em', width:'50%'}}>
-                <Title>{value.name}</Title>
-                {getUnReadCount.length 
-                  ? 
-                  <ChatRoomPanelPreview>{getUnReadCount[getUnReadCount.length - 1].message}</ChatRoomPanelPreview> 
-                  :
-                  <ChatRoomPanelPreview>{value.messages[value.messages.length - 1].message}</ChatRoomPanelPreview> 
-                }
-              </ChatRoomPanelDesc>
-            </ChatRoomDividerLeft>
-            <ChatRoomDividerRight>
-              <ChatRoomPanelTime>{time}</ChatRoomPanelTime>
-              {getUnReadCount.length ? <ChatRoomPanelBadge>{getUnReadCount.length}</ChatRoomPanelBadge> : ''}
-            </ChatRoomDividerRight>
-          </ChatRoomPanel>
+              <ChatRoomDividerLeft>
+                <ChatRoomPanelDesc>
+                  <ChatRoomPanelImg src={value.picture} />
+                </ChatRoomPanelDesc>
+                <ChatRoomPanelDesc style={{marginTop:'2vh', marginLeft:'1em', width:'50%'}}>
+                  <Title>{value.name}</Title>
+                  {getUnReadCount.length 
+                    ? 
+                    <ChatRoomPanelPreview>
+                      {
+                        getUnReadCount[getUnReadCount.length - 1].picture
+                        ? '사진'
+                        : getUnReadCount[getUnReadCount.length - 1].message
+                      }
+                    </ChatRoomPanelPreview> 
+                    :
+                    <ChatRoomPanelPreview>
+                      {
+                        value.messages[value.messages.length - 1].picture 
+                        ? '사진'
+                        : value.messages[value.messages.length - 1].message
+                      }
+                    </ChatRoomPanelPreview> 
+                  }
+                </ChatRoomPanelDesc>
+              </ChatRoomDividerLeft>
+              <ChatRoomDividerRight>
+                <ChatRoomPanelTime>{time}</ChatRoomPanelTime>
+                {getUnReadCount.length ? <ChatRoomPanelBadge>{getUnReadCount.length}</ChatRoomPanelBadge> : ''}
+              </ChatRoomDividerRight>
+            </ChatRoomPanel>
           </Link>
         )
       })

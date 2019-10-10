@@ -167,3 +167,28 @@ export const ChatWidgetMessageRight = styled.span`
   border-radius: 10px;
   box-shadow: 1px 1px 2px rgba(234, 234, 234, 0.6);
 `
+
+export const PictureWrap = styled.ul`
+  display:flex;
+  justify-content: flex-start;
+  overflow-x:scroll;
+  animation: scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+`
+
+export const PictureContent = styled.li`
+  flex: 0 1 auto;
+  margin: 0 0.5em;
+  cursor:pointer;
+`
+
+export const PictureImage = styled.img`
+  width:50px;
+  height:50px;
+  border-radius: 5px;
+`
+
+export const PictureImageLarge = styled.img`
+  width:100px;
+  height:100px;
+  border-radius: 5px;
+`
