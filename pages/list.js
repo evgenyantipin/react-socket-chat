@@ -54,7 +54,7 @@ const List = (props) => {
         <meta name="description" content="React Socket.io Chatting application"/>
         <meta name="keywords" content="react,socket.io,chatting,javascript" />
       </Head>
-      <DynamicHeader />
+      <DynamicHeader user={state.user} />
       <main>{state.data && <DynamicChatRoomWidget user={state.user} data={state.data} />}</main>
     </Layout>
   )

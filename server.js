@@ -8,7 +8,7 @@ const io = socketIO(server)
 
 let data = [
   {
-    id: 'admin',
+    id: '최준원 회장님',
     contents:[
       {
         name:'장만월 사장님',
@@ -17,50 +17,111 @@ let data = [
         messages:[
           {
             user:'장만월 사장님',
-            message:'머해',
+            message:'회장님 어디세요?',
             isRead:true
           },
           {
-            user:'admin',
-            message:'그냥있어요',
+            user:'최준원 회장님',
+            message:'식사중입니다.',
             isRead:true
           },
           {
             user:'장만월 사장님',
-            message:'머해 두번쨰',
+            message:'언제쯤 오세요?',
             isRead:false
           },
           {
             user:'장만월 사장님',
-            message:'머해 세번째',
+            message:'얼른 오세요~',
             isRead:false
           }
         ]
       },
       {
         name: '신정근 바텐더',
-        picture: '/assets/images/2.jpg',
+        picture: '/assets/images/3.jpg',
         endedAt:1570551864061,
         messages:[
           {
             user:'신정근 바텐더',
-            message:'머해',
+            message:'회장님',
             isRead:true
           },
           {
-            user:'admin',
-            message:'그냥있어요',
+            user:'최준원 회장님',
+            message:'네?',
             isRead:true
           },
           {
             user:'신정근 바텐더',
-            message:'머해 두번쨰',
+            message:'오시는 길에 와인좀 사다주세요!',
             isRead:false
+          }
+        ]
+      },
+      {
+        name: '이미라 의사',
+        picture: '/assets/images/4.jpg',
+        endedAt:1570887765818,
+        messages:[
+          {
+            user:'최준원 회장님',
+            message:'미라님',
+            isRead:true
           },
           {
-            user:'신정근 바텐더',
-            message:'머해 세번째',
+            user:'이미라 의사',
+            message:'네?',
+            isRead:true
+          },
+          {
+            user:'이미라 의사',
+            message:'말씀하세요!',
             isRead:false
+          }
+        ]
+      },
+      {
+        name: '구찬성 지배인',
+        picture: '/assets/images/6.jpg',
+        endedAt:1570531864061,
+        messages:[
+          {
+            user:'최준원 회장님',
+            message:'찬성님',
+            isRead:true
+          },
+          {
+            user:'구찬성 지배인',
+            message:'네?',
+            isRead:true
+          },
+          {
+            user:'최준원 회장님',
+            message:'휴가 잘보내고 계세요?',
+            isRead:true
+          }
+        ]
+      },
+      {
+        name: '노준석 총지배인',
+        picture: '/assets/images/5.jpg',
+        endedAt:1570532864061,
+        messages:[
+          {
+            user:'최준원 회장님',
+            message:'노준석 총지배인님',
+            isRead:true
+          },
+          {
+            user:'노준석 총지배인',
+            message:'네?',
+            isRead:true
+          },
+          {
+            user:'최준원 회장님',
+            message:'건강은 좀 어떠세요?',
+            isRead:true
           }
         ]
       }
@@ -70,28 +131,136 @@ let data = [
     id: '장만월 사장님',
     contents:[
       {
-        name:'admin',
+        name:'최준원 회장님',
         picture: '/assets/images/8.jpg',
         endedAt:1570454329003,
         messages:[
           {
             user:'장만월 사장님',
-            message:'머해',
+            message:'회장님 어디세요?',
             isRead:true
           },
           {
-            user:'admin',
-            message:'그냥있어요',
-            isRead:true
-          },
-          {
-            user:'장만월 사장님',
-            message:'머해 두번쨰',
+            user:'최준원 회장님',
+            message:'식사중입니다.',
             isRead:true
           },
           {
             user:'장만월 사장님',
-            message:'머해 세번째',
+            message:'언제쯤 오세요?',
+            isRead:true
+          },
+          {
+            user:'장만월 사장님',
+            message:'얼른 오세요~',
+            isRead:true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: '신정근 바텐더',
+    contents:[
+      {
+        name:'최준원 회장님',
+        picture: '/assets/images/8.jpg',
+        endedAt:1570551864061,
+        messages:[
+          {
+            user:'신정근 바텐더',
+            message:'회장님',
+            isRead:true
+          },
+          {
+            user:'최준원 회장님',
+            message:'네?',
+            isRead:true
+          },
+          {
+            user:'신정근 바텐더',
+            message:'오시는 길에 와인좀 사다주세요!',
+            isRead:true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: '이미라 의사',
+    contents:[
+      {
+        name:'최준원 회장님',
+        picture: '/assets/images/8.jpg',
+        endedAt:1570887765818,
+        messages:[
+          {
+            user:'최준원 회장님',
+            message:'미라님',
+            isRead:true
+          },
+          {
+            user:'이미라 의사',
+            message:'네?',
+            isRead:true
+          },
+          {
+            user:'이미라 의사',
+            message:'말씀하세요!',
+            isRead:true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: '구찬성 지배인',
+    contents:[
+      {
+        name:'최준원 회장님',
+        picture: '/assets/images/8.jpg',
+        endedAt:1570531864061,
+        messages:[
+          {
+            user:'최준원 회장님',
+            message:'찬성님',
+            isRead:true
+          },
+          {
+            user:'구찬성 지배인',
+            message:'네?',
+            isRead:true
+          },
+          {
+            user:'최준원 회장님',
+            message:'휴가 잘보내고 계세요?',
+            isRead:true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: '노준석 총지배인',
+    contents:[
+      {
+        name:'최준원 회장님',
+        picture: '/assets/images/8.jpg',
+        endedAt:1570532864061,
+        messages:[
+          {
+            user:'최준원 회장님',
+            message:'노준석 총지배인님',
+            isRead:true
+          },
+          {
+            user:'노준석 총지배인',
+            message:'네?',
+            isRead:true
+          },
+          {
+            user:'최준원 회장님',
+            message:'건강은 좀 어떠세요?',
             isRead:true
           }
         ]
@@ -106,11 +275,13 @@ io.on('connection', socket => {
   socket.on('send message', (user, target, msg, isPicture) => {
     console.log('send message to: ', user, target, msg)
     const copyData = [...data];
+    const newDate = + new Date();
 
     copyData.forEach(v => {
       if(v.id === user){
         v.contents.forEach(key => {
           if(key.name === target){
+            key.endedAt = newDate;
             key.messages.push({
               user: user,
               message: isPicture === true ? '' : msg,
@@ -122,6 +293,7 @@ io.on('connection', socket => {
       } else if (v.id === target) {
         v.contents.forEach(key => {
           if(key.name === user){
+            key.endedAt = newDate;
             key.messages.push({
               user: user,
               message: isPicture === true ? '' : msg,

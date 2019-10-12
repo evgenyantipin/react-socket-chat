@@ -17,8 +17,11 @@ moment.locale('ko')
 const ChatRoomWidget = (props) => {
   const renderChat = () => {
     const { data, user } = props;
+
     return (
-      data.contents.map((value,index) => {
+      data.contents.sort((a,b)=>{
+        return b.endedAt - a.endedAt;
+      }).map((value,index) => {
         const getUnReadCount = value.messages.filter(message => {
           return message.isRead === false;
         });

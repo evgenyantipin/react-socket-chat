@@ -28,8 +28,11 @@ const App = () => {
         <Title>사용자를 선택해주세요. &#x1F64F;</Title>
         <SelectList value={state.user} onChange={(e)=>{selectUser(e)}}>
           <option value="">선택</option>
-          <option value="admin">admin</option>
+          <option value="최준원 회장님">최준원 회장님</option>
           <option value="장만월 사장님">장만월 사장님</option>
+          <option value="이미라 의사">이미라 의사</option>
+          <option value="구찬성 지배인">구찬성 지배인</option>
+          <option value="노준석 총지배인">노준석 총지배인</option>
         </SelectList>
         <Link href={`/list?user=${state.user}`} as='/list'>
           <SelectButton disabled={!state.user}>Select</SelectButton>

@@ -74,7 +74,7 @@ const Header = (props) => {
             </Link>
           }
         <HeaderPanelContents>
-          <Title>{target || '채팅'}</Title>
+          <Title>{target || `${user}의 채팅`}</Title>
         </HeaderPanelContents>
         <HeaderPanelContents onClick={()=>{target && loadDynamicPictureWidget()}} style={{cursor:'pointer'}}>
           {
