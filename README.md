@@ -9,9 +9,9 @@
   </a>
 </p>
 
-> this is chatting application
-> development with NextJS socket.io 🌐
-> yarn install atleast "node": ">=10.16.0" it implements in 'engine' in package.json.
+> This is chatting application
+> development with nextJS socket.io 🌐
+> yarn install atleast "node": ">=10.13.0" it implements in 'engine' in package.json.
 
 ## Install
 

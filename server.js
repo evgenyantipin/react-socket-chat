@@ -124,6 +124,33 @@ let data = [
             isRead:true
           }
         ]
+      },
+      {
+        name: '김유나 인턴',
+        picture: '/assets/images/7.jpg',
+        endedAt:1570232864061,
+        messages:[
+          {
+            user:'김유나 인턴',
+            message:'안녕하세요!',
+            isRead:true
+          },
+          {
+            user:'최준원 회장님',
+            message:'새로오신 분인가요?',
+            isRead:true
+          },
+          {
+            user:'김유나 인턴',
+            message:'네 잘부탁드립니다.',
+            isRead:true
+          },
+          {
+            user:'최준원 회장님',
+            message:'환영합니다 :D',
+            isRead:true
+          },
+        ]
       }
     ],
   },
@@ -263,6 +290,38 @@ let data = [
             message:'건강은 좀 어떠세요?',
             isRead:true
           }
+        ]
+      }
+    ]
+  },
+  {
+    id: '김유나 인턴',
+    contents:[
+      {
+        name:'최준원 회장님',
+        picture: '/assets/images/8.jpg',
+        endedAt:1570232864061,
+        messages:[
+          {
+            user:'김유나 인턴',
+            message:'안녕하세요!',
+            isRead:true
+          },
+          {
+            user:'최준원 회장님',
+            message:'새로오신 분인가요?',
+            isRead:true
+          },
+          {
+            user:'김유나 인턴',
+            message:'네 잘부탁드립니다.',
+            isRead:true
+          },
+          {
+            user:'최준원 회장님',
+            message:'환영합니다 :D',
+            isRead:true
+          },
         ]
       }
     ]

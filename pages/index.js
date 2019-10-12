@@ -33,6 +33,7 @@ const App = () => {
           <option value="이미라 의사">이미라 의사</option>
           <option value="구찬성 지배인">구찬성 지배인</option>
           <option value="노준석 총지배인">노준석 총지배인</option>
+          <option value="김유나 인턴">김유나 인턴</option>
         </SelectList>
         <Link href={`/list?user=${state.user}`} as='/list'>
           <SelectButton disabled={!state.user}>Select</SelectButton>
