@@ -1,22 +1,22 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, useContext } from "react";
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Router, { withRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-import socketIOClient from "socket.io-client";
 import { ChatWidgetWrap, ChatWidgetLeft, ChatWidgetRight, ChatWidgetMessageLeft, ChatWidgetMessageRight, PictureImageLarge} from '../components/styled';
 import { useDebounce } from 'react-use';
 
+import { SocketContext } from '../socket-context';
 import Layout from '../components/layout';
 
 const DynamicHeader = dynamic(() => import('../components/header'))
 const DynamicFooter = dynamic(() => import('../components/Footer'))
 
-const socket = socketIOClient('localhost:3001');
-
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
 const Chat = (props) => {
+  const socket = useContext(SocketContext);
+  console.log('socket;;;', socket)
   const { router } = props;
   const [state, setState] = useState({
     // user: router.query.user || 'admin',

@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Router, { withRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-import socketIOClient from "socket.io-client";
 
+import { SocketContext } from '../socket-context';
 import Layout from '../components/layout';
 
 const DynamicHeader = dynamic(() => import('../components/header'))
 const DynamicChatRoomWidget = dynamic(() => import('../components/chatRoomWidget'))
 
-const socket = socketIOClient('localhost:3001');
-
 const List = (props) => {
+  const socket = useContext(SocketContext);
   const { router } = props;
   const [state, setState] = useState({
     // user: router.query.user || 'admin'

@@ -3,9 +3,6 @@ import Head from 'next/head';
 import Link from 'next/link'
 import Layout from '../components/layout';
 import { Title, SelectUserWidget, SelectList, SelectButton } from '../components/styled';
-import socketIOClient from "socket.io-client";
-
-const socket = socketIOClient('localhost:3001');
 
 const App = () => { 
   const [state, setState] = useState({

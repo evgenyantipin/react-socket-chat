@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link'
 import dynamic from 'next/dynamic';
-import socketIOClient from "socket.io-client";
 import { HeaderWrap, Title, HeaderPanel, HeaderPanelContents } from './styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser,  faImage, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
-const socket = socketIOClient('localhost:3001');
+import { SocketContext } from '../socket-context';
 
 const Header = (props) => {
+  const socket = useContext(SocketContext);
   const { user, target } = props;
   const [dynamicPictureWidget, setDynamicPictureWidget] = useState();
   const [pictures] = useState([
@@ -50,7 +50,7 @@ const Header = (props) => {
   }
 
   const loadDynamicPictureWidget = () => {
-    const DynamicPictureWidget = dynamic(import(`../components/pictureWidget`))
+    const DynamicPictureWidget = dynamic(() => import(`../components/pictureWidget`))
     if(dynamicPictureWidget) setDynamicPictureWidget();
     else setDynamicPictureWidget( <DynamicPictureWidget pictures={pictures} sendPicture={sendPicture} /> );
   }

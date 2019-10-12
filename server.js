@@ -137,13 +137,16 @@ io.on('connection', socket => {
     const targetData = copyData.filter(v => v.id === user)[0];
     const targetMessages = targetData ? targetData.contents.filter(value => value.name === target)[0].messages : [];
     io.sockets.emit('receive message', targetMessages);
+
+    const reduceTargetData = copyData.filter(v => v.id === target)[0];
+    socket.broadcast.emit('receive data', reduceTargetData);
   })
 
   socket.on('receive data', (user) => {
     console.log('receive data to: ', user)
     console.log('data', data)
     const newData = data.filter(v => v.id === user)[0];
-    io.sockets.emit('receive data', newData);
+    io.sockets.to(socket.id).emit('receive data', newData);
   });
 
   socket.on('receive message', (user, target) => {
