@@ -14,17 +14,15 @@ const List = (props) => {
   const socket = useContext(SocketContext);
   const { router } = props;
   const [state, setState] = useState({
-    // user: router.query.user || 'admin'
-    user: router.query.user
+    user: router.query.user,
+    target: router.query.target,
+    read: router.query.read ? true : false
   })
 
   const receiveData = () => {
-    console.log('현재 유저', state.user)
     socket.emit('receive data', state.user);  
 
     socket.on('receive data', (data) => {
-      console.log('현재 유저22', state.user)
-      console.log('receive data', data)
       setState({ 
         ...state,
         data 
@@ -36,10 +34,18 @@ const List = (props) => {
         pathname: '/'
       })
     }
-  }
+  };
+
+  const readMessages = () => {
+    socket.emit('read message', state.user, state.target);
+  };
 
   useEffect(() => {
     receiveData();
+
+    if(state.read){
+      readMessages();
+    }
 
     return () => {
       socket.off('receive data');

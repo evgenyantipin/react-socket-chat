@@ -9,9 +9,9 @@
   </a>
 </p>
 
-> This is chatting application
-> development with nextJS socket.io 🌐
-> yarn install at least "node": ">=10.16.0" it implements in 'engine' in package.json.
+- this is chatting application  
+- development with [nextJS](https://nextjs.org/), socket.io 📦  
+- yarn install at least "node": ">=10.16.0" it implements in 'engine' in package.json.
 
 ## Install
 
@@ -29,6 +29,36 @@ yarn server
 
 ```sh
 yarn dev
+```
+
+## Project Tree
+```sh
+|-- components
+    |-- chatRoomWidget.js
+    |-- footer.js
+    |-- header.js
+    |-- layout.js
+    |-- pictureWidget.js
+    |-- styled.js
+|-- pages
+    |-- chat.js
+    |-- index.js
+    |-- list.js
+|-- public
+    |-- assets
+      |-- images
+    |-- favicon.ico
+|-- .babelrc
+|-- .eslintignore
+|-- .eslintrc
+|-- .gitignore
+|-- LICENSE
+|-- next.config.js
+|-- package.json
+|-- README.md
+|-- server.js
+|-- socket-context.js
+|-- yarn.lock
 ```
 
 ## Author

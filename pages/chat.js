@@ -16,11 +16,8 @@ const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
 const Chat = (props) => {
   const socket = useContext(SocketContext);
-  console.log('socket;;;', socket)
   const { router } = props;
   const [state, setState] = useState({
-    // user: router.query.user || 'admin',
-    // target: router.query.target || '장만월 사장님',
     user: router.query.user,
     target: router.query.target,
     messages:[]
@@ -30,13 +27,9 @@ const Chat = (props) => {
   const executeScroll = () => scrollToRef(myRef)
 
   const receiveMessage = () => {
-    console.log('현재 유저', state.user)
-    console.log('현재 타겟', state.target)
     socket.emit('receive message', state.user, state.target);  
 
     socket.on('receive message', (messages) => {
-      console.log('현재 유저2', state.user)
-      console.log('받은 메세지', messages)
       setState({ 
         ...state,
         messages
@@ -65,11 +58,10 @@ const Chat = (props) => {
     () => {
       setDebounceMessage(debounceMessage)
     },
-    1000,
+    500,
     [debounceMessage]
   );
 
-  // sending sockets
   const readMessages = () => {
     socket.emit('read message', state.user, state.target);
   };

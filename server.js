@@ -329,10 +329,9 @@ let data = [
 ];
 
 io.on('connection', socket => {
-  console.log('connected!');
+  // console.log('connected!');
 
   socket.on('send message', (user, target, msg, isPicture) => {
-    console.log('send message to: ', user, target, msg)
     const copyData = [...data];
     const newDate = + new Date();
 
@@ -363,7 +362,6 @@ io.on('connection', socket => {
         });
       }
     })
-    console.log('send data copydata', copyData)
 
     const targetData = copyData.filter(v => v.id === user)[0];
     const targetMessages = targetData ? targetData.contents.filter(value => value.name === target)[0].messages : [];
@@ -374,21 +372,17 @@ io.on('connection', socket => {
   })
 
   socket.on('receive data', (user) => {
-    console.log('receive data to: ', user)
-    console.log('data', data)
     const newData = data.filter(v => v.id === user)[0];
     io.sockets.to(socket.id).emit('receive data', newData);
   });
 
   socket.on('receive message', (user, target) => {
-    console.log('receive message to: ', user, target)
     const targetData = data.filter(v => v.id === user)[0];
     const targetMessages = targetData ? targetData.contents.filter(value => value.name === target)[0].messages : [];
     io.sockets.emit('receive message', targetMessages);
   });
 
   socket.on('read message', (user, target) => {
-    console.log('read message to: ', user, target)
     const copyData = [...data];
     const userIdx = copyData.findIndex(v => v.id === user);
     if(userIdx !== -1){
@@ -403,8 +397,8 @@ io.on('connection', socket => {
       copyData[userIdx].contents = mappingData;
     }
 
-    data = copyData;
-    // io.sockets.emit('read message', copyData);
+    const newData = copyData.filter(v => v.id === user)[0];
+    io.sockets.to(socket.id).emit('receive data', newData);
   });
 
   socket.on('disconnect', () => {

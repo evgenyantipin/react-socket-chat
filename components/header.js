@@ -61,7 +61,7 @@ const Header = (props) => {
           {
             target 
             ? 
-            <Link href={`/list?user=${user}`} as='/list'>
+            <Link href={`/list?user=${user}&target=${target}&read=true`} as='/list'>
               <HeaderPanelContents style={{cursor:'pointer'}}>
                 <FontAwesomeIcon icon={faChevronLeft} style={{width:'1em'}} /> 
               </HeaderPanelContents>
