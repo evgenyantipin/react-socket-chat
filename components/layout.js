@@ -42,6 +42,36 @@ const GlobalStyle = createGlobalStyle`
       transform: scale(1);
     }
   }
+
+  @keyframes slide-right {
+    0% {
+      transform: translateX(-100px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-left {
+    0% {
+      transform: translateX(50px);
+      opacity:0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity:1;
+    }
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
 `
 
 const Layout = (props) => {

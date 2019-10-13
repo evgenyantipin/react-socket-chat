@@ -115,7 +115,7 @@ const Chat = (props) => {
         <meta name="keywords" content="react,socket.io,chatting,javascript" />
       </Head>
       <DynamicHeader user={state.user} target={state.target} />
-      {state.messages.length && renderChatMessages()}
+      {state.messages.length ? renderChatMessages() : ''}
       <DynamicFooter debounceMessage={debounceMessage} setDebounceMessage={setDebounceMessage} sendMessages={sendMessages} />
       <div ref={myRef} style={{visibility:'hidden'}}></div>
     </Layout>

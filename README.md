@@ -66,12 +66,3 @@ yarn dev
 👤 **juunone <juunone@gmail.com>**
 
 * Github: [@juunone](https://github.com/juunone)
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/juunone/react-socket-chat/issues).
-
-## 📝 License
-
-Copyright © 2019 [juunone <juunone@gmail.com>](https://github.com/juunone).<br />
-This project is [MIT](https://github.com/juunone/react-socket-chat/blob/master/LICENSE) licensed.

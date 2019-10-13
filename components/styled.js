@@ -54,6 +54,7 @@ export const ChatRoomPanel = styled.li`
   display:flex;
   padding:0.7em 1em;
   cursor:pointer;
+  animation: fade-in 1s;
 
   :hover{
     background:#eee;
@@ -75,6 +76,7 @@ export const ChatRoomPanelImg = styled.img`
   height:5rem;
   border-radius:50%;
   border:1px solid #ddd;
+  animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 `
 export const ChatRoomPanelDesc = styled.div`
  float:left;
@@ -136,9 +138,7 @@ export const FooterSendButton = styled(SelectButton)`
 export const ChatWidgetWrap = styled.ul`
   background:#f9f9fb;
   padding:1em;
-  // overflow-y: scroll;
-  // max-height: 500px;
-  // height:500px;
+  animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 `
 
 export const ChatWidgetLeft = styled.li`
