@@ -12,6 +12,7 @@
 - this is chatting application  
 - development with [nextJS](https://nextjs.org/), [socket.io](https://socket.io/) 📦  
 - yarn install at least "node": ">=10.16.0" it implements 'engine' in package.json.
+- experience real-time chatting with more than two local hosts e.g. http://localhost:3000
 
 ## Install
 
